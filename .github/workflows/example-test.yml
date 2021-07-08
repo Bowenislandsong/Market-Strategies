@@ -1,0 +1,23 @@
+
+name: Test CI
+
+on: 
+  push:
+    branches: 
+      - main
+  pull_request:
+    branches: 
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: dependencies
+      run: pip3 install alpaca-trade-api
+    - name: example_test
+      env:
+        ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
+        ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
+      run: python3 examples/simpleTrading.py $ALPACA_API_KEY $ALPACA_SECRET_KEY
