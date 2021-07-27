@@ -21,3 +21,8 @@ jobs:
         ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
         ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
       run: python3 examples/simpleTrading.py $ALPACA_API_KEY $ALPACA_SECRET_KEY
+    - name: analysis_tests
+      env:
+        ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
+        ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
+      run: python3 pkg/numerical/*_test.py $ALPACA_API_KEY $ALPACA_SECRET_KEY
